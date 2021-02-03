@@ -1,0 +1,47 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Annotator" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigEmptyHeader" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigListAcceptability" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigMissingRequiredDeclaration" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigPairAcceptability" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigPatternEnumerationRedundancy" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigReferenceCorrectness" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigRootDeclarationCorrectness" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigRootDeclarationUniqueness" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigUnexpectedComma" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigValueCorrectness" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="EditorConfigValueUniqueness" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="InjectedReferences" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="SyntaxError" enabled="true" level="ERROR" enabled_by_default="true">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
+  </profile>
+</component>
