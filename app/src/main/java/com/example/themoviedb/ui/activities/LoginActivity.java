@@ -1,34 +1,24 @@
-package com.example.themoviedb;
+package com.example.themoviedb.ui.activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.themoviedb.R;
 import com.example.themoviedb.api.ApiAdapter;
 import com.example.themoviedb.model.CreateSessionDTO;
 import com.example.themoviedb.model.CreateSessionResponseDTO;
 import com.example.themoviedb.model.LoginSessionDTO;
-import com.example.themoviedb.model.MyBaseModelDTO;
 import com.example.themoviedb.model.TokenDTO;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -111,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("SESSION_ID", sessionId);
                     editor.commit();
                     Log.d("SESSION_ID",sessionId);
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, InicioActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

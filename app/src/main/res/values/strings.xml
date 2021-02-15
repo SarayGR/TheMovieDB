@@ -2,4 +2,8 @@
     <string name="app_name">TheMovieDB</string>
 
     <string name="api_key">c8593b39c5f32dce2528c89e8ced7302</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_movie">Películas</string>
+    <string name="title_dashboard">Inicio</string>
+    <string name="title_series">Series</string>
 </resources>
