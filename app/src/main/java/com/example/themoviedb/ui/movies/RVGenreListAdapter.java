@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.themoviedb.R;
@@ -20,11 +21,12 @@ import java.util.List;
 public class RVGenreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context ctx;
     private List<GenreDTO> itemList;
-    private Boolean anyPending;
+    private RVGenreListAdapter.CustomGenreClick listener;
 
-    public RVGenreListAdapter(List<GenreDTO> itemList, Context ctx) {
+    public RVGenreListAdapter(List<GenreDTO> itemList, Context ctx, RVGenreListAdapter.CustomGenreClick listener) {
         this.ctx = ctx;
         this.itemList = itemList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -42,15 +44,20 @@ public class RVGenreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         GenreDTO item = itemList.get(position);
         if (item.getName() != null) {
             holder.tvGenreName.setText(item.getName());
+            holder.cvGenre.setCardBackgroundColor(ctx.getResources().getColor(R.color.green_9B));
         }
+
+        ((GenresListViewHolder) viewHolder).cvGenre.setOnClickListener(v -> {
+            onClick(itemList.get(position));
+        });
 
     }
 
-    /*@Override
-    public int getItemViewType(int position) {
-        if (position == (INT_ZERO)) return INT_ZERO;
-        else return INT_ONE;
-    }*/
+    public void onClick(GenreDTO item) {
+        if (listener != null) {
+            listener.onGenreClick(item);
+        }
+    }
 
     @Override
     public int getItemCount() {
@@ -65,23 +72,16 @@ public class RVGenreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public static class GenresListViewHolder extends RecyclerView.ViewHolder {
         TextView tvGenreName;
+        CardView cvGenre;
 
         public GenresListViewHolder(View itemView) {
             super(itemView);
             tvGenreName = (TextView) itemView.findViewById(R.id.titleTextView);
+            cvGenre = itemView.findViewById(R.id.cardView);
         }
     }
 
-    /*public static class PayViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout llInvoicePaymentInfo;
-        ConstraintLayout clInvoiceListPayment;
-        ConstraintLayout clInvoiceListFirstItemParent;
-
-        public PayViewHolder(View itemView) {
-            super(itemView);
-            llInvoicePaymentInfo = (LinearLayout) itemView.findViewById(R.id.llInvoicePaymentInfo);
-            clInvoiceListPayment = (ConstraintLayout) itemView.findViewById(R.id.clInvoiceListPayment);
-            clInvoiceListFirstItemParent = (ConstraintLayout) itemView.findViewById(R.id.clInvoiceListFirstItemParent);
-        }
-    }*/
+    public interface CustomGenreClick {
+        void onGenreClick(GenreDTO item);
+    }
 }

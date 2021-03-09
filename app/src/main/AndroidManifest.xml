@@ -28,6 +28,7 @@
             android:name=".ui.activities.LoginActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".ui.activities.MainActivity" />
+        <activity android:name=".ui.activities.MovieDetailActivity" />
     </application>
 
 </manifest>

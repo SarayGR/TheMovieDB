@@ -2,9 +2,10 @@ package com.example.themoviedb.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DiscoverMovieDTO {
+public class DiscoverMovieDTO implements Serializable {
 
     @SerializedName("adult")
     private Boolean adult;

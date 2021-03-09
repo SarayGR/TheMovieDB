@@ -1,11 +1,19 @@
 package com.example.themoviedb.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import com.example.themoviedb.R;
+import com.example.themoviedb.model.DiscoverMovieDTO;
+import com.example.themoviedb.model.GenreDTO;
+import com.example.themoviedb.ui.movies.MovieDetailFragment;
+import com.example.themoviedb.ui.utils.FragmentConstant;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,4 +36,9 @@ public class InicioActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    public void goToMovieDetail(DiscoverMovieDTO item) {
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra("Movie", item);
+        startActivity(intent);
+    }
 }

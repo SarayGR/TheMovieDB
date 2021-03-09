@@ -3,7 +3,9 @@ package com.example.themoviedb.ui.activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.WindowManager;
 
 import com.example.themoviedb.R;
 import com.example.themoviedb.api.ApiAdapter;
+import com.example.themoviedb.model.ConfigurationApiDTO;
 import com.example.themoviedb.model.TokenDTO;
 
 import retrofit2.Call;

@@ -113,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<CreateSessionResponseDTO> call, Throwable t) {
                 showAlertDialog(t.getMessage());
-                Log.d("ERROR", t.getMessage());
             }
         });
     }
