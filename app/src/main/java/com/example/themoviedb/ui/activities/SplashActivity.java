@@ -61,6 +61,4 @@ public class SplashActivity extends AppCompatActivity implements Callback<TokenD
         t.printStackTrace();
         Log.d("ERROR", t.getMessage());
     }
-
-
 }
