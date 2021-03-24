@@ -5,37 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.movies.MoviesFragment">
+    tools:context=".ui.series.SeriesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMoviesGenres"
+            android:id="@+id/rvSeriesGenres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
-            android:id="@+id/tvPopularity"
+            android:id="@+id/tvSeriesPopularity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:textColor="@color/black"
             android:fontFamily="sans-serif-black"
-            android:text="@string/movies_recycler_popularity"
+            android:text="@string/series_recycler_popularity"
+            android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvMoviesGenres" />
+            app:layout_constraintTop_toBottomOf="@id/rvSeriesGenres" />
 
         <TextView
-            android:id="@+id/tvGenre"
+            android:id="@+id/tvSeriesGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -46,18 +46,18 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPopularity" />
+            app:layout_constraintTop_toBottomOf="@id/tvSeriesPopularity" />
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMoviesOrderByPopularity"
+            android:id="@+id/rvSeriesOrderByPopularity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="#BDC1DD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvGenre" >
+            app:layout_constraintTop_toBottomOf="@+id/tvSeriesGenre">
 
         </androidx.recyclerview.widget.RecyclerView>
 

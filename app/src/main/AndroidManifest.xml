@@ -28,7 +28,24 @@
             android:name=".ui.activities.LoginActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".ui.activities.MainActivity" />
-        <activity android:name=".ui.activities.MovieDetailActivity" />
+        <activity android:name=".ui.activities.MovieDetailActivity"
+            android:label="Detalle">
+
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activities.InicioActivity" />
+
+        </activity>
+
+        <activity android:name=".ui.activities.SerieDetailActivity"
+            android:label="Detalle">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activities.InicioActivity" />
+
+        </activity>
     </application>
 
 </manifest>

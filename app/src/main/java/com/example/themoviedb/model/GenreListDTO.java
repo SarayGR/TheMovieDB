@@ -2,9 +2,10 @@ package com.example.themoviedb.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GenreListDTO {
+public class GenreListDTO implements Serializable {
     @SerializedName("genres")
     private List<GenreDTO> genres;
 

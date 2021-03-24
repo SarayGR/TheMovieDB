@@ -1,9 +1,8 @@
-package com.example.themoviedb.ui.movies;
+package com.example.themoviedb.ui.series;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,25 +16,24 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.themoviedb.R;
-import com.example.themoviedb.model.DiscoverMovieDTO;
+import com.example.themoviedb.model.DiscoverTVProgramsDTO;
 import com.example.themoviedb.model.ImageDTO;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
 
-public class RVMoviePopularityListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RVSeriesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context ctx;
-    private List<DiscoverMovieDTO> itemList;
+    private List<DiscoverTVProgramsDTO> itemList;
     private ImageDTO imageDTO;
-    private RVMoviePopularityListAdapter.CustomMovieClick listener;
+    private CustomSerieClick listener;
 
-    public RVMoviePopularityListAdapter(List<DiscoverMovieDTO> itemList, Context ctx, ImageDTO imageDTO, RVMoviePopularityListAdapter.CustomMovieClick listener) {
+    public RVSeriesListAdapter(List<DiscoverTVProgramsDTO> itemList, Context ctx, ImageDTO imageDTO, CustomSerieClick listener) {
         this.ctx = ctx;
         this.itemList = itemList;
         this.imageDTO = imageDTO;
@@ -54,9 +52,9 @@ public class RVMoviePopularityListAdapter extends RecyclerView.Adapter<RecyclerV
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         MoviesPopularityListViewHolder holder = (MoviesPopularityListViewHolder) viewHolder;
-        DiscoverMovieDTO item = itemList.get(position);
-        if (item.getTitle() != null && imageDTO != null) {
-            holder.tvTitle.setText(item.getTitle());
+        DiscoverTVProgramsDTO item = itemList.get(position);
+        if (item.getName() != null && imageDTO != null) {
+            holder.tvTitle.setText(item.getName());
 
             String baseUrl = imageDTO.getSecureBaseUrl();
             String size = imageDTO.getPosterSizes().get(3);
@@ -73,9 +71,9 @@ public class RVMoviePopularityListAdapter extends RecyclerView.Adapter<RecyclerV
 
     }
 
-    public void onClick(DiscoverMovieDTO item, String url) {
+    public void onClick(DiscoverTVProgramsDTO item, String url) {
         if (listener != null) {
-            listener.onMovieClick(item, url);
+            listener.onSerieClick(item, url);
         }
     }
 
@@ -134,9 +132,7 @@ public class RVMoviePopularityListAdapter extends RecyclerView.Adapter<RecyclerV
 
     }
 
-    public interface CustomMovieClick {
-        void onMovieClick(DiscoverMovieDTO item, String url);
-        //TODO: pasar la serie DTO como parámetro e implementar el onClick cuando es desde el SeriesFragment.
-        //void onSerieClick();
+    public interface CustomSerieClick {
+        void onSerieClick(DiscoverTVProgramsDTO item, String url);
     }
 }

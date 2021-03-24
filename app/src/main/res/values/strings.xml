@@ -6,4 +6,18 @@
     <string name="title_movie">Películas</string>
     <string name="title_dashboard">Inicio</string>
     <string name="title_series">Series</string>
+    <!-- Movies -->
+    <string name="movies_recycler_genre">Género: %1$s</string>
+    <string name="movies_recycler_popularity">Películas por popularidad</string>
+    <string name="movie_detail_description">Descripción</string>
+    <string name="movie_detail_user_rating">Puntuación de usuario</string>
+    <string name="movie_detail_play_trailer_btn">Reproducir trailer</string>
+    <string name="movie_detail_genres">GÉNEROS: %1$s</string>
+    <!-- Series -->
+    <string name="series_recycler_popularity">Series por popularidad</string>
+    <string name="serie_detail_description">Descripción</string>
+    <string name="serie_detail_user_rating">Puntuación de usuario</string>
+    <string name="serie_detail_play_trailer_btn">Reproducir trailer</string>
+    <string name="serie_detail_genres">GÉNEROS: %1$s</string>
+    <string name="dashboard_welcome_text">Bienvenido/a. <br/><br/> Millones de películas y series por descubrir. Explora ahora.</string>
 </resources>

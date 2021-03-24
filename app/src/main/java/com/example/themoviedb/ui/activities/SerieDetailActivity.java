@@ -2,38 +2,36 @@ package com.example.themoviedb.ui.activities;
 
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.example.themoviedb.R;
 import com.example.themoviedb.model.DiscoverMovieDTO;
+import com.example.themoviedb.model.DiscoverTVProgramsDTO;
 import com.example.themoviedb.model.GenreListDTO;
-import com.example.themoviedb.ui.movies.MovieDetailFragment;
+import com.example.themoviedb.ui.series.SerieDetailFragment;
 import com.example.themoviedb.ui.utils.FragmentConstant;
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class SerieDetailActivity extends AppCompatActivity {
 
-    DiscoverMovieDTO  movieDTO;
+    DiscoverTVProgramsDTO discoverTVProgramsDTO;
     String url;
     GenreListDTO genreListDTO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_detail);
+        setContentView(R.layout.activity_serie_detail);
 
-        movieDTO = (DiscoverMovieDTO) getIntent().getSerializableExtra("Movie");
+        discoverTVProgramsDTO = (DiscoverTVProgramsDTO) getIntent().getSerializableExtra("Serie");
         url = getIntent().getStringExtra("ImageUrl");
-        genreListDTO = (GenreListDTO) getIntent().getSerializableExtra("GenreListDto");
+        genreListDTO = (GenreListDTO) getIntent().getSerializableExtra("GenreList");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .add(R.id.content, new MovieDetailFragment().newInstance(movieDTO, url, genreListDTO), FragmentConstant.FRAG_MOVIE_DETAIL)
+                .add(R.id.content, new SerieDetailFragment().newInstance(discoverTVProgramsDTO, url, genreListDTO), FragmentConstant.FRAG_MOVIE_DETAIL)
                 .commit();
     }
 }

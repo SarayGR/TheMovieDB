@@ -1,16 +1,18 @@
 package com.example.themoviedb.ui.movies;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +26,7 @@ import com.example.themoviedb.model.GenreListDTO;
 import com.example.themoviedb.model.ImageDTO;
 import com.example.themoviedb.ui.activities.InicioActivity;
 import com.example.themoviedb.ui.utils.Dialogs;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +44,13 @@ import static com.example.themoviedb.ui.utils.StringConstants.es_ES;
 public class MoviesFragment extends Fragment implements RVMoviePopularityListAdapter.CustomMovieClick, RVGenreListAdapter.CustomGenreClick {
 
     private View root;
+    private TextView tvGenre;
     private RecyclerView rvGenres;
     private RecyclerView rvMoviesOrderByPopularity;
     private RVGenreListAdapter adapterGenres;
     private RVMoviePopularityListAdapter adapterMovies;
     private List<GenreDTO> genreListData = new ArrayList<>();
+    private GenreListDTO genreListDTO;
     private List<DiscoverMovieDTO> moviePopularityList = new ArrayList<>();
     private ImageDTO imageDto;
     public RVMoviePopularityListAdapter.CustomMovieClick listener;
@@ -66,6 +71,8 @@ public class MoviesFragment extends Fragment implements RVMoviePopularityListAda
         rvMoviesOrderByPopularity = root.findViewById(R.id.rvMoviesOrderByPopularity);
         rvMoviesOrderByPopularity.setLayoutManager(layoutManager1);
         listener = this::onMovieClick;
+        //
+        tvGenre = root.findViewById(R.id.tvGenre);
         return root;
     }
 
@@ -121,6 +128,7 @@ public class MoviesFragment extends Fragment implements RVMoviePopularityListAda
             public void onResponse(Call<GenreListDTO> call, Response<GenreListDTO> response) {
                 if (response != null && response.body() != null) {
                     genreListData = response.body().getGenres();
+                    genreListDTO = response.body();
                     adapterGenres = new RVGenreListAdapter(genreListData, getContext(), listenerGenre);
                     rvGenres.setAdapter(adapterGenres);
                 }
@@ -135,10 +143,9 @@ public class MoviesFragment extends Fragment implements RVMoviePopularityListAda
     }
 
     @Override
-    public void onMovieClick(DiscoverMovieDTO item) {
-        //TODO IMPLEMENT GO TO MOVIE DETAIL.
+    public void onMovieClick(DiscoverMovieDTO item, String url) {
         Log.d("HOLA", "HE HECHO ONCLICK");
-        ((InicioActivity) getActivity()).goToMovieDetail(item);
+        ((InicioActivity) getActivity()).goToMovieDetail(item, url, genreListDTO);
 
     }
 
@@ -146,6 +153,8 @@ public class MoviesFragment extends Fragment implements RVMoviePopularityListAda
     public void onGenreClick(GenreDTO item) {
         comeFromGenre = true;
         callConfigurationApi();
+        tvGenre.setVisibility(View.VISIBLE);
+        tvGenre.setText(getString(R.string.movies_recycler_genre,item.getName()));
         callGetMoviesByGenre(item);
     }
 
