@@ -7,11 +7,8 @@ import com.example.themoviedb.model.DiscoverMovieResponseDTO;
 import com.example.themoviedb.model.DiscoverTVResponseDTO;
 import com.example.themoviedb.model.GenreListDTO;
 import com.example.themoviedb.model.LoginSessionDTO;
-import com.example.themoviedb.model.MovieVideoDTO;
-import com.example.themoviedb.model.MyBaseModelDTO;
+import com.example.themoviedb.model.VideoDTO;
 import com.example.themoviedb.model.TokenDTO;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -53,5 +50,8 @@ public interface ApiService {
     Call<DiscoverTVResponseDTO> discoverSeriesByGenre(@Query("api_key") String apiKey, @Query("language") String language, @Query("region") String region, @Query("sort_by") String sortBy, @Query("include_adult") String includeAdult, @Query("include_video") String includeVideo, @Query("page") String page, @Query("with_genres") String genresIds);
 
     @GET("/3/movie/{movieId}/videos?")
-    Call<MovieVideoDTO> getMovieTrailers(@Path("movieId") String movieId, @Query("api_key") String apiKey);
+    Call<VideoDTO> getMovieTrailers(@Path("movieId") String movieId, @Query("api_key") String apiKey);
+
+    @GET("/3/tv/{tv_id}/videos?")
+    Call<VideoDTO> getTvTrailers(@Path("tv_id") String movieId, @Query("api_key") String apiKey);
 }

@@ -34,4 +34,11 @@ public class SerieDetailActivity extends AppCompatActivity {
                 .add(R.id.content, new SerieDetailFragment().newInstance(discoverTVProgramsDTO, url, genreListDTO), FragmentConstant.FRAG_MOVIE_DETAIL)
                 .commit();
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
 }

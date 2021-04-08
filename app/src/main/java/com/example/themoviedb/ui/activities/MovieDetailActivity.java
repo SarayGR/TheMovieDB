@@ -1,6 +1,7 @@
 package com.example.themoviedb.ui.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,4 +37,11 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .add(R.id.content, new MovieDetailFragment().newInstance(movieDTO, url, genreListDTO), FragmentConstant.FRAG_MOVIE_DETAIL)
                 .commit();
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
 }

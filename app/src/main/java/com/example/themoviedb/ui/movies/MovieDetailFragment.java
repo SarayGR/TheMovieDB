@@ -1,10 +1,10 @@
 package com.example.themoviedb.ui.movies;
 
-import android.content.SharedPreferences;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,40 +15,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.themoviedb.R;
 import com.example.themoviedb.api.ApiAdapter;
-import com.example.themoviedb.model.ConfigurationApiDTO;
 import com.example.themoviedb.model.DiscoverMovieDTO;
-import com.example.themoviedb.model.DiscoverMovieResponseDTO;
 import com.example.themoviedb.model.GenreDTO;
 import com.example.themoviedb.model.GenreListDTO;
-import com.example.themoviedb.model.ImageDTO;
-import com.example.themoviedb.model.MovieVideoDTO;
+import com.example.themoviedb.model.VideoDTO;
+import com.example.themoviedb.model.ResultVideosDTO;
 import com.example.themoviedb.ui.utils.Dialogs;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.example.themoviedb.ui.utils.StringConstants.ES;
-import static com.example.themoviedb.ui.utils.StringConstants.FALSE;
-import static com.example.themoviedb.ui.utils.StringConstants.STRING_ONE;
-import static com.example.themoviedb.ui.utils.StringConstants.TRUE;
-import static com.example.themoviedb.ui.utils.StringConstants.es_ES;
 
 public class MovieDetailFragment extends Fragment {
 
@@ -59,6 +42,7 @@ public class MovieDetailFragment extends Fragment {
     View view;
     GenreListDTO genreListDTO;
     Button btnPlayTrailer;
+    ResultVideosDTO trailer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,6 +76,16 @@ public class MovieDetailFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        callMovieTrailers();
+
+        btnPlayTrailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playTrailer();
+            }
+        });
+
         return view;
     }
 
@@ -137,24 +131,39 @@ public class MovieDetailFragment extends Fragment {
     }
 
     public void playTrailer() {
-
-
-
+        String youtubeVideoId = trailer.getKey(); //Id video.
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + youtubeVideoId));
+        try {
+            startActivity(appIntent);  //Abre con aplicación.
+        } catch (ActivityNotFoundException ex) {
+            //En caso de no existir la aplicación instalada se abre mediante el navegador.
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://www.youtube.com/watch?v=" + youtubeVideoId));
+            startActivity(webIntent);
+        }
     }
 
     public void callMovieTrailers() {
-        Call<MovieVideoDTO> call = ApiAdapter.getApiService().getMovieTrailers(movieDTO.getId().toString(), getString(R.string.api_key));
-        call.enqueue(new Callback<MovieVideoDTO>() {
+        Call<VideoDTO> call = ApiAdapter.getApiService().getMovieTrailers(movieDTO.getId().toString(), getString(R.string.api_key));
+        call.enqueue(new Callback<VideoDTO>() {
             @Override
-            public void onResponse(Call<MovieVideoDTO> call, Response<MovieVideoDTO> response) {
+            public void onResponse(Call<VideoDTO> call, Response<VideoDTO> response) {
                 if (response != null && response.body() != null) {
                     btnPlayTrailer.setVisibility(View.VISIBLE);
-                    response.body().getResults().get(0);
+                    List<ResultVideosDTO> results = response.body().getResults();
+                    for (ResultVideosDTO r : results) {
+                        if (r.getType().equalsIgnoreCase("Trailer")) {
+                            trailer = r;
+                        }
+                        break;
+                    }
+                } else {
+                    btnPlayTrailer.setVisibility(View.GONE);
                 }
             }
 
             @Override
-            public void onFailure(Call<MovieVideoDTO> call, Throwable t) {
+            public void onFailure(Call<VideoDTO> call, Throwable t) {
                 Dialogs dialogs = new Dialogs();
                 dialogs.showAlertDialog(t.getMessage(), getContext());
             }

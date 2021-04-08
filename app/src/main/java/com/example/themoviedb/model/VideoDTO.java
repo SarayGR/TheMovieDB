@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MovieVideoDTO {
+public class VideoDTO {
 
     @SerializedName("id")
     private Integer id;

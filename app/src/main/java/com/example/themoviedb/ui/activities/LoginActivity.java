@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +19,9 @@ import com.example.themoviedb.model.CreateSessionResponseDTO;
 import com.example.themoviedb.model.LoginSessionDTO;
 import com.example.themoviedb.model.TokenDTO;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textview.MaterialTextView;
 
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin;
     TextInputEditText etLoginUserEdittext, etLoginPasswordEdittext;
+    MaterialTextView tvSignUp;
 
     private LoginSessionDTO loginSessionDTO;
     private CreateSessionDTO createSessionDTO;
@@ -44,6 +48,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         etLoginUserEdittext = findViewById(R.id.etLoginUserEdittext);
         etLoginPasswordEdittext = findViewById(R.id.etLoginPasswordEdittext);
+        tvSignUp = findViewById(R.id.tvSignUp);
+        tvSignUp.setOnClickListener(v -> {
+            String url = "https://www.themoviedb.org/signup";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        });
     }
 
     public void callValidateWithLogin(View view) {

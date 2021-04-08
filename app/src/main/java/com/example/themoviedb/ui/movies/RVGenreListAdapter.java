@@ -44,7 +44,7 @@ public class RVGenreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         GenreDTO item = itemList.get(position);
         if (item.getName() != null) {
             holder.tvGenreName.setText(item.getName());
-            holder.cvGenre.setCardBackgroundColor(ctx.getResources().getColor(R.color.green_9B));
+            holder.cvGenre.setCardBackgroundColor(ctx.getResources().getColor(R.color.green_A5));
         }
 
         ((GenresListViewHolder) viewHolder).cvGenre.setOnClickListener(v -> {

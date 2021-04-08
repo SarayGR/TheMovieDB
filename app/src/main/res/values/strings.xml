@@ -20,4 +20,6 @@
     <string name="serie_detail_play_trailer_btn">Reproducir trailer</string>
     <string name="serie_detail_genres">GÉNEROS: %1$s</string>
     <string name="dashboard_welcome_text">Bienvenido/a. <br/><br/> Millones de películas y series por descubrir. Explora ahora.</string>
+
+    <string name="login_screen_singup_text"><u>¿Aún no tienes una cuenta? Regístrate.</u></string>
 </resources>
